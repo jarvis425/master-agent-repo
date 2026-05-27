@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:smart_calculator/providers/calculation_provider.dart';
-import 'package:smart_calculator/widgets/calculation_history.dart';
-import 'package:smart_calculator/widgets/calculation_keypad.dart';
-class HomeScreen extends ConsumerWidget {
+import 'package:master_agent_repo/widgets/home_widget.dart';
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final calculationProvider = ref.watch(calculationProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CalculationHistory(),
-          CalculationKeypad(),
-        ],
+      appBar: AppBar(
+        title: const Text('Home Screen'),
+      ),
+      body: const Center(
+        child: HomeWidget(),
       ),
     );
   }

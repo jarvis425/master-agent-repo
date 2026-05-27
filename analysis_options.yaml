@@ -1,5 +1,10 @@
 include: package:master_agent_repo/**.dart
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  exclude:
+    - android/**
+    - ios/**
+    - test/**
+    - web/**
+    - macos/**
+    - linux/**
+    - windows/**

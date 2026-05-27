@@ -1,4 +1,2 @@
-rootProject.name = 'master_agent_repo'
-apply from: '../vendor/flutter/plugins/flutter.gradle'
-apply from: '../vendor/flutter/.flutter-plugins'
-apply from: '../vendor/flutter/.flutter-plugins-dependencies'
+rootProject.name = "master_agent_repo"
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"

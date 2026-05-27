@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: '../vendor/flutter/plugins/flutter.gradle'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
+  namespace 'com.example.master_agent_repo'
   compileSdkVersion 34
   defaultConfig {
     applicationId "com.example.master_agent_repo"

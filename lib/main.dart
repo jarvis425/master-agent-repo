@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/home_screen.dart';
 void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,21 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My App'),
-      ),
-      body: const Center(
-        child: Text('Hello, World!'),
-      ),
+      home: const HomeScreen(),
     );
   }
 }

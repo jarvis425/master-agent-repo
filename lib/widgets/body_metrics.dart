@@ -12,7 +12,6 @@ class _BodyMetricsState extends State<BodyMetrics> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text('Enter your body metrics'),
         TextField(
           decoration: const InputDecoration(
             labelText: 'Age',
@@ -25,7 +24,7 @@ class _BodyMetricsState extends State<BodyMetrics> {
         ),
         TextField(
           decoration: const InputDecoration(
-            labelText: 'Weight (kg)',
+            labelText: 'Weight',
           ),
           onChanged: (value) {
             setState(() {
@@ -35,7 +34,7 @@ class _BodyMetricsState extends State<BodyMetrics> {
         ),
         TextField(
           decoration: const InputDecoration(
-            labelText: 'Height (cm)',
+            labelText: 'Height',
           ),
           onChanged: (value) {
             setState(() {

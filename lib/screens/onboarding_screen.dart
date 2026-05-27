@@ -17,15 +17,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: const [
-          GenderSelection(),
-          BodyMetrics(),
-          TargetAreas(),
-          FitnessLevel(),
-          FrequencySelection(),
-          CoreGoalSelection(),
-          HealthChecklistFilter(),
-          EquipmentAccessMatrix(),
+        children: [
+          const GenderSelection(),
+          const BodyMetrics(),
+          const TargetAreas(),
+          const FitnessLevel(),
+          const FrequencySelection(),
+          const CoreGoalSelection(),
+          const HealthChecklistFilter(),
+          const EquipmentAccessMatrix(),
         ],
       ),
     );

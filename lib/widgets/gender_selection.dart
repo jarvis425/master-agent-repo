@@ -10,26 +10,21 @@ class _GenderSelectionState extends State<GenderSelection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text('Select your gender'),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _selectedGender = 'Male';
-                });
-              },
-              child: const Text('Male'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _selectedGender = 'Female';
-                });
-              },
-              child: const Text('Female'),
-            ),
-          ],
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _selectedGender = 'Male';
+            });
+          },
+          child: const Text('Male'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _selectedGender = 'Female';
+            });
+          },
+          child: const Text('Female'),
         ),
       ],
     );

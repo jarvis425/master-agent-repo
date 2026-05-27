@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:master_agent_repo/screens/home_screen.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'System Leveling',
+      title: 'Master Agent Repo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Master Agent Repo'),
+      ),
+      body: const Center(
+        child: Text('Hello, World!'),
+      ),
     );
   }
 }

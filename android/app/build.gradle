@@ -1,10 +1,21 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
 android {
-  compileSdkVersion 34
+  namespace "com.example.master_agent_repo"
+  compileSdkVersion flutter.compileSdkVersion
   defaultConfig {
-    targetSdkVersion 34
+    applicationId "com.example.master_agent_repo"
+    minSdkVersion flutter.minSdkVersion
+    targetSdkVersion flutter.targetSdkVersion
+    versionCode flutterVersionCode.toInteger()
+    versionName flutterVersionName
     multiDexEnabled true
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.debug
+    }
   }
 }

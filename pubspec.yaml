@@ -1,6 +1,8 @@
-name: my_app
-description: A simple Flutter app
+name: master-agent-repo
+description: A premium, gamified System Leveling fitness system theme
 version: 1.0.0+1
+environment:
+  sdk: '>=3.12.0 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter

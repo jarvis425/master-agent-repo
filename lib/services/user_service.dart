@@ -1,6 +1,6 @@
 class UserService {
-  Future<List<User>> getUsers() async {
-    // Implement API call to get users
-    return [];
+  Future<UserModel> getUser() async {
+    // Implement user retrieval logic here
+    return const UserModel(name: 'John Doe', level: 1);
   }
 }

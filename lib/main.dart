@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:smart_calculator/providers/theme_provider.dart';
-import 'package:smart_calculator/screens/home_screen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:master_agent_repo/screens/home_screen.dart';
 void main() {
-  runApp(
-    ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final themeProvider = ref.watch(themeProvider);
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Smart Calculator',
-      theme: themeProvider.theme,
-      home: HomeScreen(),
+      title: 'Master Agent Repo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
     );
   }
 }

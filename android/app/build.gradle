@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: '../vendor/flutter/plugins/flutter.gradle'
 android {
   compileSdkVersion 34
   defaultConfig {
-    applicationId "com.example.smart_calculator"
+    applicationId "com.example.master_agent_repo"
     minSdkVersion 21
     targetSdkVersion 34
     multiDexEnabled true
@@ -17,10 +18,4 @@ android {
       shrinkResources false
     }
   }
-}
-dependencies {
-  implementation 'androidx.core:core-ktx:1.10.0'
-  implementation 'androidx.appcompat:appcompat:1.6.1'
-  implementation 'com.google.android.material:material:1.9.0'
-  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 }

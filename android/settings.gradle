@@ -1,2 +1,4 @@
-rootProject.name = "smart_calculator"
-include ':app'
+rootProject.name = 'master_agent_repo'
+apply from: '../vendor/flutter/plugins/flutter.gradle'
+apply from: '../vendor/flutter/.flutter-plugins'
+apply from: '../vendor/flutter/.flutter-plugins-dependencies'

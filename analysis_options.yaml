@@ -1,4 +1,4 @@
-include: package:*/**.dart
+include: package:master_agent_repo/**.dart
 analyzer:
   strong-mode:
     implicit-casts: false

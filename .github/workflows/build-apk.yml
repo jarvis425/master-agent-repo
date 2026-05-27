@@ -7,33 +7,63 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Xmx4g"
+      JAVA_TOOL_OPTIONS: "-Xmx4g"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - uses: subosito/flutter-action@v2
+
+      - name: Set up Flutter (stable)
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
-      - name: Ensure Android platform files
+
+      - name: Accept Android SDK licenses (non-interactive)
+        run: yes | flutter doctor --android-licenses || true
+
+      - name: Flutter doctor
+        run: flutter doctor -v || true
+
+      - name: Ensure Android platform files exist
         run: |
-          if [ ! -d android ]; then
-            flutter create . --platforms=android --project-name "${{ github.event.repository.name }}" || true
+          if [ ! -f android/app/build.gradle ]; then
+            flutter create . --platforms=android --project-name master_agent_repo --org com.example
           fi
-      - run: flutter pub get
-      - run: flutter build apk --release
+
+      - name: Clean stale Gradle/Flutter artifacts
+        run: |
+          flutter clean || true
+          rm -rf ~/.gradle/caches/build-cache-* || true
+
+      - name: flutter pub get
+        run: flutter pub get
+
+      - name: Build release APK (debug-signed)
+        run: flutter build apk --release
+
       - name: Rename APK
-        run: cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/${{ github.event.repository.name }}-${{ github.run_number }}.apk
+        run: cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/master_agent_repo-${{ github.run_number }}.apk
+
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
           name: Build ${{ github.run_number }}
-          files: build/app/outputs/flutter-apk/${{ github.event.repository.name }}-${{ github.run_number }}.apk
+          files: build/app/outputs/flutter-apk/master_agent_repo-${{ github.run_number }}.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

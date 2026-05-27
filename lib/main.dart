@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:master_agent_repo/main.dart';
 class CalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,52 +13,13 @@ class CalculatorApp extends StatelessWidget {
     );
   }
 }
-
 class CalculatorPage extends StatefulWidget {
   @override
   _CalculatorPageState createState() => _CalculatorPageState();
 }
-
 class _CalculatorPageState extends State<CalculatorPage> {
   String _display = '';
   double _result = 0;
-  String _operator = '';
-  double _firstNumber = 0;
-  double _secondNumber = 0;
-
-  void _onButtonPressed(String value) {
-    setState(() {
-      if (value == 'C') {
-        _display = '';
-        _result = 0;
-        _operator = '';
-        _firstNumber = 0;
-        _secondNumber = 0;
-      } else if (value == '=') {
-        if (_operator == '+') {
-          _result = _firstNumber + _secondNumber;
-        } else if (_operator == '-') {
-          _result = _firstNumber - _secondNumber;
-        } else if (_operator == '*') {
-          _result = _firstNumber * _secondNumber;
-        } else if (_operator == '/') {
-          if (_secondNumber != 0) {
-            _result = _firstNumber / _secondNumber;
-          } else {
-            _display = 'Error';
-          }
-        }
-        _display = _result.toString();
-      } else if (['+', '-', '*', '/'].contains(value)) {
-        _firstNumber = double.parse(_display);
-        _operator = value;
-        _display = '';
-      } else {
-        _display += value;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,90 +28,109 @@ class _CalculatorPageState extends State<CalculatorPage> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomRight,
-              padding: EdgeInsets.all(20),
-              child: Text(
-                _display,
-                style: TextStyle(fontSize: 40),
-              ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              _display,
+              style: TextStyle(fontSize: 30),
             ),
           ),
           Expanded(
-            flex: 3,
             child: GridView.count(
               crossAxisCount: 4,
-              childAspectRatio: 1.2,
               children: [
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('7'),
-                  child: Text('7'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('8'),
-                  child: Text('8'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('9'),
-                  child: Text('9'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('/'),
-                  child: Text('/'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('4'),
-                  child: Text('4'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('5'),
-                  child: Text('5'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('6'),
-                  child: Text('6'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('*'),
-                  child: Text('*'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('1'),
-                  child: Text('1'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('2'),
-                  child: Text('2'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('3'),
-                  child: Text('3'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('-'),
-                  child: Text('-'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('0'),
-                  child: Text('0'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('.'),
-                  child: Text('.'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('='),
-                  child: Text('='),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('+'),
-                  child: Text('+'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _onButtonPressed('C'),
-                  child: Text('C'),
-                ),
+                CalculatorButton('7', () {
+                  setState(() {
+                    _display += '7';
+                  });
+                }),
+                CalculatorButton('8', () {
+                  setState(() {
+                    _display += '8';
+                  });
+                }),
+                CalculatorButton('9', () {
+                  setState(() {
+                    _display += '9';
+                  });
+                }),
+                CalculatorButton('/', () {
+                  setState(() {
+                    _display += '/';
+                  });
+                }),
+                CalculatorButton('4', () {
+                  setState(() {
+                    _display += '4';
+                  });
+                }),
+                CalculatorButton('5', () {
+                  setState(() {
+                    _display += '5';
+                  });
+                }),
+                CalculatorButton('6', () {
+                  setState(() {
+                    _display += '6';
+                  });
+                }),
+                CalculatorButton('*', () {
+                  setState(() {
+                    _display += '*';
+                  });
+                }),
+                CalculatorButton('1', () {
+                  setState(() {
+                    _display += '1';
+                  });
+                }),
+                CalculatorButton('2', () {
+                  setState(() {
+                    _display += '2';
+                  });
+                }),
+                CalculatorButton('3', () {
+                  setState(() {
+                    _display += '3';
+                  });
+                }),
+                CalculatorButton('-', () {
+                  setState(() {
+                    _display += '-';
+                  });
+                }),
+                CalculatorButton('0', () {
+                  setState(() {
+                    _display += '0';
+                  });
+                }),
+                CalculatorButton('.', () {
+                  setState(() {
+                    _display += '.';
+                  });
+                }),
+                CalculatorButton('C', () {
+                  setState(() {
+                    _display = '';
+                  });
+                }),
+                CalculatorButton('+', () {
+                  setState(() {
+                    _display += '+';
+                  });
+                }),
+                CalculatorButton('=', () {
+                  try {
+                    _result = _calculate(_display);
+                    setState(() {
+                      _display = _result.toString();
+                    });
+                  } catch (e) {
+                    setState(() {
+                      _display = 'Error';
+                    });
+                  }
+                }),
               ],
             ),
           ),
@@ -158,15 +138,78 @@ class _CalculatorPageState extends State<CalculatorPage> {
       ),
     );
   }
-}
-
-class Calculator extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CalculatorApp();
+  double _calculate(String expression) {
+    try {
+      return double.parse(expression);
+    } catch (e) {
+      try {
+        return _calculateExpression(expression);
+      } catch (e) {
+        throw Exception('Invalid expression');
+      }
+    }
+  }
+  double _calculateExpression(String expression) {
+    try {
+      return Function.apply(_calculateOperation, _parseExpression(expression));
+    } catch (e) {
+      throw Exception('Invalid expression');
+    }
+  }
+  List<double> _parseExpression(String expression) {
+    List<double> numbers = [];
+    List<String> operators = [];
+    String currentNumber = '';
+    for (int i = 0; i < expression.length; i++) {
+      if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') {
+        numbers.add(double.parse(currentNumber));
+        operators.add(expression[i]);
+        currentNumber = '';
+      } else {
+        currentNumber += expression[i];
+      }
+    }
+    numbers.add(double.parse(currentNumber));
+    return numbers;
+  }
+  double _calculateOperation(List<double> numbers, String operator) {
+    switch (operator) {
+      case '+':
+        return numbers[0] + numbers[1];
+      case '-':
+        return numbers[0] - numbers[1];
+      case '*':
+        return numbers[0] * numbers[1];
+      case '/':
+        if (numbers[1] == 0) {
+          throw Exception('Division by zero');
+        }
+        return numbers[0] / numbers[1];
+      default:
+        throw Exception('Invalid operator');
+    }
   }
 }
-
+class CalculatorButton extends StatelessWidget {
+  final String text;
+  final Function onPressed;
+  CalculatorButton(this.text, this.onPressed);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onPressed();
+      },
+      child: Container(
+        margin: EdgeInsets.all(10),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 30),
+        ),
+      ),
+    );
+  }
+}
 void main() {
-  runApp(Calculator());
+  runApp(CalculatorApp());
 }

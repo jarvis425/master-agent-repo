@@ -1,2 +1,2 @@
-include ':app'
-project(':app').projectDir = new File(settingsDir, 'app')
+rootProject.name = "master_agent_repo"
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.my_app">
+<manifest xmlns="http://schemas.android.com/apk/res/android"
+    package="com.example.master_agent_repo">
     <application
-        android:label="my_app"
+        android:label="master_agent_repo"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
@@ -16,8 +16,5 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="flutterEmbedding"
-            android:value="2"/>
     </application>
 </manifest>

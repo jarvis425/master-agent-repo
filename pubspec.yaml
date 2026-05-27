@@ -1,0 +1,11 @@
+name: system_leveling
+description: A premium, highly gamified, mobile-first fitness app
+version: 1.0.0+1
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  youtube_api: ^1.0.1
+  http: ^0.13.3
+  shared_preferences: ^2.0.6

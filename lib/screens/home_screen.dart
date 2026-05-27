@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+import 'package:smart_calculator/providers/calculation_provider.dart';
+import 'package:smart_calculator/widgets/calculation_history.dart';
+import 'package:smart_calculator/widgets/calculation_keypad.dart';
+class HomeScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final calculationProvider = ref.watch(calculationProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('System Leveling'),
-      ),
-      body: const Center(
-        child: Text('Welcome to System Leveling'),
+      body: Column(
+        children: [
+          CalculationHistory(),
+          CalculationKeypad(),
+        ],
       ),
     );
   }

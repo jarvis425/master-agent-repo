@@ -1,6 +1,11 @@
-name: master_agent_repo
+name: smart_calculator
 environment:
   sdk: '>=3.12.0 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
+  flutter_riverpod: ^2.1.1
+  math_expressions: ^2.0.0
+  shared_preferences: ^2.1.1
+  google_fonts: ^3.0.1
+  animations: ^2.0.2
